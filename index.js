@@ -3,6 +3,9 @@
 
 const axios = require('axios');
 
+//List of verification services
+module.exports.services = ['bloxlink', 'rover', 'rowifi']
+
 //Bloxlink
 async function bloxlink(discordid, guildid) {
     //Check for variables
