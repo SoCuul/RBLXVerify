@@ -12,8 +12,25 @@ async function bloxlink(discordid, guildid) {
     if(typeof discordid !== "string") throw new TypeError('The provided Discord ID must be a string')
     if(guildid && typeof guildid !== "string") throw new TypeError('The provided guild ID must be a string')
 
-    if(isNaN(discordid)) throw new TypeError('The provided Discord ID must contain valid numbers')
-    if(guildid && isNaN(guildid)) throw new TypeError('The provided guild ID must contain valid numbers')
+    //Check for variable validity
+    //Discord ID
+    try{
+        let int = BigInt(discordid)
+        if(int < 0) throw new Error("Negative")
+    }
+    catch(error){
+        throw new TypeError('The provided Discord ID must only contain valid positive integers')
+    }
+    //Guild ID
+    try{
+        if(guildid){
+            let int = BigInt(guildid)
+            if(int < 0) throw new Error("Negative")
+        }
+    }
+    catch(error){
+        throw new TypeError('The provided guild ID must only contain valid positive integers')
+    }
 
     //Prepare for bloxlinkError
     let bloxlinkError = null
@@ -81,7 +98,7 @@ async function bloxlink(discordid, guildid) {
         //Set error type
         if(bloxlinkError && bloxlinkError.data && bloxlinkError.data.status && bloxlinkError.data.status === 'error'){
             errorResponse.errorType = 'bloxlink'
-        }
+        } 
         else if(error.response && error.response.data && error.response.data.errors && error.response.data.errors[0]){
             errorResponse.errorType = 'roblox'
         }
@@ -91,13 +108,28 @@ async function bloxlink(discordid, guildid) {
 
         //Set error
         if(errorResponse.errorType === 'bloxlink'){
-            errorResponse.error = bloxlinkError.data.error ? bloxlinkError.data.error : bloxlinkError.data
+            if(bloxlinkError.data.error){
+                errorResponse.error = bloxlinkError.data.error
+                errorResponse.rawError = bloxlinkError.data
+            }
+            else{
+                errorResponse.error = 'View rawError'
+                errorResponse.rawError = bloxlinkError.data
+            }
         }
         else if(errorResponse.errorType === 'roblox'){
-            errorResponse.error = error.response.data.errors[0].message ? error.response.data.errors[0].message : error.response.data.errors[0]
+            if(error.response.data.errors[0].message){
+                errorResponse.error = error.response.data.errors[0].message
+                errorResponse.rawError = error.response.data.errors[0]
+            }
+            else{
+                errorResponse.error = 'View rawError'
+                errorResponse.rawError = error.response.data.errors[0]
+            }
         }
         else if(errorResponse.errorType === 'node'){
             errorResponse.error = error
+            errorResponse.rawError = null
         }
         else{
             errorResponse.error = null
@@ -116,7 +148,15 @@ async function rover(discordid) {
     //Check for variable types
     if(typeof discordid !== "string") throw new TypeError('The provided Discord ID must be a string')
     
-    if(isNaN(discordid)) throw new TypeError('The provided Discord ID must contain valid numbers')
+    //Check for variable validity
+    //Discord ID
+    try{
+        let int = BigInt(discordid)
+        if(int < 0) throw new Error("Negative")
+    }
+    catch(error){
+        throw new TypeError('The provided Discord ID must only contain valid positive integers')
+    }
 
     try{
         //Make RoVer request
@@ -168,10 +208,18 @@ async function rover(discordid) {
 
         //Set error
         if(errorResponse.errorType === 'rover'){
-            errorResponse.error = error.response.data.error ? error.response.data.error : error.response.data
+            if(error.response.data.error){
+                errorResponse.error = error.response.data.error
+                errorResponse.rawError = error.response.data
+            }
+            else{
+                errorResponse.error = 'View rawError'
+                errorResponse.rawError = error.response.data
+            }
         }
         else if(errorResponse.errorType === 'node'){
             errorResponse.error = error
+            errorResponse.rawError = null
         }
         else{
             errorResponse.error = null
@@ -191,8 +239,25 @@ async function rowifi(discordid, guildid) {
     if(typeof discordid !== "string") throw new TypeError('The provided Discord ID must be a string')
     if(guildid && typeof guildid !== "string") throw new TypeError('The provided guild ID must be a string')
 
-    if(isNaN(discordid)) throw new TypeError('The provided Discord ID must contain valid numbers')
-    if(guildid && isNaN(guildid)) throw new TypeError('The provided guild ID must contain valid numbers')
+    //Check for variable validity
+    //Discord ID
+    try{
+        let int = BigInt(discordid)
+        if(int < 0) throw new Error("Negative")
+    }
+    catch(error){
+        throw new TypeError('The provided Discord ID must only contain valid positive integers')
+    }
+    //Guild ID
+    try{
+        if(guildid){
+            let int = BigInt(guildid)
+            if(int < 0) throw new Error("Negative")
+        }
+    }
+    catch(error){
+        throw new TypeError('The provided guild ID must only contain valid positive integers')
+    }
 
     //Prepare for rowifiError
     let rowifiError = null
@@ -266,13 +331,28 @@ async function rowifi(discordid, guildid) {
 
         //Set error
         if(errorResponse.errorType === 'rowifi'){
-            errorResponse.error = rowifiError.data.message ? rowifiError.data.message : rowifiError.data
+            if(rowifiError.data.message){
+                errorResponse.error = rowifiError.data.message
+                errorResponse.rawError = rowifiError.data
+            }
+            else{
+                errorResponse.error = 'View rawError'
+                errorResponse.rawError = rowifiError.data
+            }
         }
         else if(errorResponse.errorType === 'roblox'){
-            errorResponse.error = error.response.data.errors[0].message ? error.response.data.errors[0].message : error.response.data.errors[0]
+            if(error.response.data.errors[0].message){
+                errorResponse.error = error.response.data.errors[0].message
+                errorResponse.rawError = error.response.data.errors[0]
+            }
+            else{
+                errorResponse.error = 'View rawError'
+                errorResponse.rawError = error.response.data.errors[0]
+            }
         }
         else if(errorResponse.errorType === 'node'){
             errorResponse.error = error
+            errorResponse.rawError = null
         }
         else{
             errorResponse.error = null
