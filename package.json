@@ -1,6 +1,6 @@
 {
   "name": "rblxverify",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A package that allows you to easily interact with Roblox verification APIs.",
   "main": "index.js",
   "dependencies": {

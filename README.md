@@ -6,6 +6,7 @@
 - [About](#about)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Schemas](#schemas)
 - [Functions](#functions)
 - [Support](#support)
 
