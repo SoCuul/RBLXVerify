@@ -131,8 +131,8 @@ async function bloxlink(discordid, guildid) {
             }
         }
         else if(errorResponse.errorType === 'node'){
-            errorResponse.error = error
-            errorResponse.rawError = null
+            errorResponse.error = 'View rawError'
+            errorResponse.rawError = error
         }
         else{
             errorResponse.error = null
@@ -221,8 +221,8 @@ async function rover(discordid) {
             }
         }
         else if(errorResponse.errorType === 'node'){
-            errorResponse.error = error
-            errorResponse.rawError = null
+            errorResponse.error = 'View rawError'
+            errorResponse.rawError = error
         }
         else{
             errorResponse.error = null
@@ -354,8 +354,8 @@ async function rowifi(discordid, guildid) {
             }
         }
         else if(errorResponse.errorType === 'node'){
-            errorResponse.error = error
-            errorResponse.rawError = null
+            errorResponse.error = 'View rawError'
+            errorResponse.rawError = error
         }
         else{
             errorResponse.error = null
@@ -466,8 +466,8 @@ async function rbxbolt(discordid, key) {
             }
         }
         else if(errorResponse.errorType === 'node'){
-            errorResponse.error = error
-            errorResponse.rawError = null
+            errorResponse.error = 'View rawError'
+            errorResponse.rawError = error
         }
         else{
             errorResponse.error = null
