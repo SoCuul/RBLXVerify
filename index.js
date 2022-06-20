@@ -7,7 +7,7 @@ const axios = require('axios');
 module.exports.services = ['bloxlink', 'rover', 'rowifi', 'rbxbolt']
 
 //Bloxlink
-async function bloxlink(discordid, guildid) {
+async function bloxlink(discordid, guildid, apikey) {
     //Check for variables
     if(!discordid) throw new Error('No Discord ID was provided')
 
@@ -40,9 +40,9 @@ async function bloxlink(discordid, guildid) {
 
     try{
         //Make bloxlink request
-        const verifyRequest = await axios.get('https://api.blox.link/v1/user/' + discordid, {
-            params: {
-                guild: guildid
+        const verifyRequest = await axios.get('https://v3.blox.link/developer/discord/' + discordid + '?guildId=' + 'guildid', {
+            headers: {
+                'api-key': apikey
             }
         })
 
